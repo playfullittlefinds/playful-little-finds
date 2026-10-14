@@ -1,0 +1,804 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style></head><body><title>Playful Little Finds</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Poppins:wght@400;500;600&display=swap">
+<style id="app-style">
+/* Layout: one sticky header, a rounded pastel hero, category cards, article grids. Brown ink on cream, one pastel family per section. */
+:root{
+  --font-display:'Baloo 2','Nunito','Trebuchet MS',system-ui,sans-serif;
+  --font-body:'Poppins',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --bg:#FFFBF5; --surface:#FFFFFF; --surface-2:#F8EDE3; --cloud:#FFFFFF;
+  --ink:#4A2A1C; --ink-soft:#7A5A4A; --line:#F0DFCF; --btn-ink:#3E2415;
+  --pink:#FFD6E7; --pink-ink:#A32752; --pink-strong:#FF8DB9;
+  --yellow:#FFF4CC; --yellow-ink:#7A5200; --yellow-strong:#FFD04D;
+  --mint:#D4F1E9; --mint-ink:#1B6650; --mint-strong:#7ED3B8;
+  --blue:#D3E7FF; --blue-ink:#1B4F8F; --blue-strong:#7DB8F5;
+  --lav:#EADCF8; --lav-ink:#5A3994; --lav-strong:#B79BE6;
+  --t-pink:#F26BA0; --t-yellow:#F2B01E; --t-blue:#4DA3F0; --t-mint:#3DBE98; --t-lav:#9C7BE0;
+  --shadow:0 8px 24px rgba(120,70,40,.10);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#241A21; --surface:#33262F; --surface-2:#2D2129; --cloud:#F4E6EE;
+    --ink:#FFEFE0; --ink-soft:#D9BFB0; --line:#4A3944;
+    --pink:#4F2C3E; --pink-ink:#FFB4D0; --yellow:#4A4020; --yellow-ink:#FFE08A;
+    --mint:#25453D; --mint-ink:#9FE6CD; --blue:#25405C; --blue-ink:#A9D3FF;
+    --lav:#403055; --lav-ink:#D8C3F7; --shadow:0 8px 24px rgba(0,0,0,.35);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#241A21; --surface:#33262F; --surface-2:#2D2129; --cloud:#F4E6EE;
+  --ink:#FFEFE0; --ink-soft:#D9BFB0; --line:#4A3944;
+  --pink:#4F2C3E; --pink-ink:#FFB4D0; --yellow:#4A4020; --yellow-ink:#FFE08A;
+  --mint:#25453D; --mint-ink:#9FE6CD; --blue:#25405C; --blue-ink:#A9D3FF;
+  --lav:#403055; --lav-ink:#D8C3F7; --shadow:0 8px 24px rgba(0,0,0,.35);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.6;padding-block:0;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+body.editing{padding-bottom:96px}
+h1,h2,h3,p{margin:0}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--lav-strong);outline-offset:2px}
+.wrap{max-width:1120px;margin:0 auto}
+
+/* section colours */
+.k-activities{--tint:var(--pink);--tint-ink:var(--pink-ink);--strong:var(--pink-strong)}
+.k-toys{--tint:var(--mint);--tint-ink:var(--mint-ink);--strong:var(--mint-strong)}
+.k-crafts{--tint:var(--yellow);--tint-ink:var(--yellow-ink);--strong:var(--yellow-strong)}
+.k-gifts{--tint:var(--lav);--tint-ink:var(--lav-ink);--strong:var(--lav-strong)}
+.k-about{--tint:var(--blue);--tint-ink:var(--blue-ink);--strong:var(--blue-strong)}
+
+/* svg fills */
+.f-pink{fill:var(--pink-strong)}.f-yellow{fill:var(--yellow-strong)}.f-mint{fill:var(--mint-strong)}.f-blue{fill:var(--blue-strong)}.f-lav{fill:var(--lav-strong)}.f-cream{fill:var(--cloud)}.f-ink{fill:var(--btn-ink)}
+.s-pink{stroke:var(--pink-strong)}.s-yellow{stroke:var(--yellow-strong)}.s-mint{stroke:var(--mint-strong)}.s-blue{stroke:var(--blue-strong)}.s-lav{stroke:var(--lav-strong)}.s-line{stroke:var(--line)}.s-ink{stroke:var(--btn-ink)}
+.bk-t{font-family:var(--font-display);font-weight:700;font-size:22px;fill:var(--btn-ink);letter-spacing:.08em}
+
+/* wordmark */
+.wm .w0{color:var(--t-pink)}.wm .w1{color:var(--t-yellow)}.wm .w2{color:var(--t-blue)}.wm .w3{color:var(--t-mint)}.wm .w4{color:var(--t-lav)}
+
+/* header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:2px dashed var(--line)}
+.top-in{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;padding-block:10px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit}
+.mini-badge{width:58px;height:58px;border-radius:50%;display:block;flex:none;overflow:hidden;background:#FFF8F0}
+.mini-badge img{width:100%;height:100%;display:block}
+.about-logo{width:min(280px,100%);height:auto;aspect-ratio:1;border-radius:50%;flex:none;display:block}
+.brand-name{font-family:var(--font-display);font-weight:800;font-size:1.3rem;line-height:.95;display:flex;flex-direction:column}
+.nav{display:flex;gap:4px;margin-left:auto;min-width:0;overflow-x:auto;scrollbar-width:none;align-items:center}
+.nav::-webkit-scrollbar{display:none}
+.nav a{padding:6px 14px;border-radius:999px;font-size:.9rem;font-weight:500;text-decoration:none;white-space:nowrap}
+.nav a:hover{background:var(--surface-2)}
+.nav a[aria-current="page"]{background:var(--pink-strong);color:var(--btn-ink);font-weight:600}
+.edit-toggle{border:2px solid var(--lav-strong);background:transparent;border-radius:999px;padding:5px 14px;font-size:.85rem;font-weight:600;cursor:pointer;white-space:nowrap}
+.edit-toggle[aria-pressed="true"]{background:var(--lav-strong);color:var(--btn-ink)}
+@media (max-width:820px){.nav{order:3;width:100%;margin-left:0}.edit-toggle{margin-left:auto}}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--strong,var(--yellow-strong));color:var(--btn-ink);border:0;border-radius:999px;padding:10px 22px;font-weight:600;text-decoration:none;cursor:pointer;font-size:.95rem}
+.btn:hover{filter:brightness(.97)}
+.ghost{background:transparent;border:2px solid var(--line);border-radius:999px;padding:8px 18px;font-weight:600;cursor:pointer;font-size:.9rem}
+.ghost:hover{background:var(--surface-2)}
+.mini{background:var(--surface-2);border:0;border-radius:999px;padding:3px 12px;font-size:.78rem;font-weight:600;cursor:pointer}
+.mini.danger{color:var(--pink-ink)}
+.confirm{font-size:.8rem;display:inline-flex;gap:6px;align-items:center;flex-wrap:wrap}
+
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:24px;align-items:center;margin-top:20px;padding:clamp(20px,4vw,48px);border-radius:32px;background:linear-gradient(135deg,var(--pink) 0%,var(--yellow) 62%,var(--surface-2) 100%)}
+.hero-copy{display:flex;flex-direction:column;gap:16px;align-items:flex-start;min-width:0}
+.hero h1{font-family:var(--font-display);font-weight:800;line-height:.88;font-size:clamp(3rem,9vw,5.8rem);display:flex;flex-direction:column;text-wrap:balance}
+.hero h1 .l2{color:var(--ink)}
+.pill{background:var(--pink-strong);color:var(--btn-ink);border-radius:999px;padding:6px 20px;font-weight:600;font-size:clamp(.85rem,2.4vw,1.05rem)}
+.lead{font-size:1.02rem;max-width:34em;color:var(--ink)}
+.hero-art{min-width:0}
+.hero-art svg{width:100%;height:auto;max-width:520px;display:block;margin-inline:auto}
+@media (max-width:820px){.hero{grid-template-columns:minmax(0,1fr)}.hero-art{order:-1;max-width:340px;margin-inline:auto;width:100%}}
+
+/* sections */
+.sec-title{font-family:var(--font-display);font-weight:700;font-size:clamp(1.6rem,4.5vw,2.2rem);line-height:1.1;margin:44px 0 18px;text-wrap:balance}
+.cats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:16px}
+.cat{background:var(--tint);border-radius:26px;padding:20px;display:flex;flex-direction:column;align-items:flex-start;gap:8px;min-width:0}
+.cat-ico{width:120px;max-width:100%}
+.cat-ico svg{width:100%;height:auto;display:block}
+.cat-t{font-family:var(--font-display);font-weight:700;font-size:1.35rem;line-height:1.1;color:var(--ink)}
+.cat-p{font-size:.92rem;color:var(--ink-soft);margin-bottom:6px}
+.cat .btn{margin-top:auto}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr));gap:18px}
+.acard{background:var(--surface);border:2px solid var(--line);border-radius:22px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.acover{display:block;background:var(--tint);aspect-ratio:16/10;overflow:hidden}
+.acover svg,.acover img{width:100%;height:100%;display:block}
+.acover img{object-fit:cover}
+.abody{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;flex:1;min-width:0}
+.atitle{font-family:var(--font-display);font-weight:700;font-size:1.2rem;line-height:1.15}
+.atitle a{text-decoration:none}
+.atitle a:hover{text-decoration:underline}
+.asum{font-size:.88rem;color:var(--ink-soft);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.arow{margin-top:auto;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;padding-top:4px}
+.more{display:inline-flex;align-items:center;gap:6px;background:var(--strong);color:var(--btn-ink);border-radius:999px;padding:6px 16px;font-weight:600;font-size:.85rem;text-decoration:none}
+.more:hover{filter:brightness(.96)}
+.acard.clickable{cursor:pointer}
+.acard .chip{align-self:flex-start}
+.soon{background:var(--surface-2);color:var(--ink-soft);border-radius:999px;padding:5px 14px;font-size:.82rem;font-weight:600}
+.more-row{display:flex;justify-content:center;margin-top:24px}
+.empty{background:var(--surface-2);border-radius:22px;padding:28px;text-align:center;color:var(--ink-soft)}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.fchip{background:var(--surface-2);border:2px solid transparent;border-radius:999px;padding:6px 16px;font-size:.88rem;font-weight:600;cursor:pointer}
+.fchip:hover{border-color:var(--line)}
+.fchip[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+
+/* category and about bands */
+.band{background:var(--tint);border-radius:28px;padding:clamp(22px,4vw,44px);margin-top:20px;display:flex;flex-wrap:wrap;gap:16px 24px;align-items:center;justify-content:space-between;margin-bottom:28px}
+.band-copy{display:flex;flex-direction:column;gap:10px;flex:1 1 320px;min-width:0;align-items:flex-start}
+.band-h{font-family:var(--font-display);font-weight:800;font-size:clamp(2rem,6vw,3.4rem);line-height:1;color:var(--tint-ink);text-wrap:balance}
+.band-p{color:var(--ink);max-width:36em}
+.band-art{width:190px;max-width:100%;flex:none}
+.band-art svg{width:100%;height:auto;display:block}
+@media (max-width:560px){.band-art{display:none}}
+
+/* article */
+.article{max-width:820px;margin:24px auto 0}
+.back{display:inline-block;font-weight:600;font-size:.9rem;color:var(--tint-ink);text-decoration:none;margin-bottom:14px}
+.back:hover{text-decoration:underline}
+.art-cover{background:var(--tint);border-radius:26px;overflow:hidden;aspect-ratio:16/9;display:grid;place-items:center}
+.art-cover svg{height:100%;width:auto;max-width:100%}
+.art-cover img{width:100%;height:100%;object-fit:cover}
+.art-meta{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:18px 0 8px}
+.chip{background:var(--tint);color:var(--tint-ink);border-radius:999px;padding:2px 14px;font-size:.8rem;font-weight:600}
+.date{font-size:.85rem;color:var(--ink-soft)}
+.art-h{font-family:var(--font-display);font-weight:800;font-size:clamp(2rem,6vw,3rem);line-height:1.05;text-wrap:balance}
+.art-lead{font-size:1.1rem;color:var(--ink-soft);margin:10px 0 18px}
+.art-body{display:flex;flex-direction:column;gap:1em;max-width:65ch}
+.art-sub{font-family:var(--font-display);font-weight:600;font-size:clamp(1.15rem,3.4vw,1.5rem);color:var(--tint-ink);margin-top:4px}
+.disclose{background:var(--yellow);color:var(--ink);border-radius:16px;padding:10px 16px;font-size:.9rem;margin:18px 0}
+.rich{display:flex;flex-direction:column;gap:1em;max-width:65ch}
+.rich p,.rich ul,.rich h3{margin:0}
+.rich ul{padding-left:1.25em;display:grid;gap:.5em}
+.rich h3{font-family:var(--font-display);font-size:1.25rem}
+.sec-h{font-family:var(--font-display);font-weight:700;font-size:clamp(1.5rem,4.2vw,2rem);line-height:1.1;margin:40px 0 16px;text-wrap:balance}
+.picks{display:grid;gap:18px}
+.prod{background:var(--surface);border:2px solid var(--line);border-radius:24px;padding:18px;display:grid;grid-template-columns:minmax(0,210px) minmax(0,1fr);gap:20px;align-items:start}
+.prod-img{aspect-ratio:1;border-radius:18px;overflow:hidden;background:var(--tint);display:grid;place-items:center}
+.prod-img img{width:100%;height:100%;object-fit:contain;background:#fff}
+.ph{display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px;text-align:center;font-size:.8rem;color:var(--tint-ink);font-weight:600}
+.ph svg{width:44px;height:44px}
+.prod-t{font-family:var(--font-display);font-weight:700;font-size:1.35rem;line-height:1.15}
+.prod-body{display:flex;flex-direction:column;gap:10px;min-width:0;align-items:flex-start}
+.prod-body p{margin:0}
+.why{background:var(--tint);border-radius:16px;padding:10px 14px;align-self:stretch}
+.why strong,.best strong{color:var(--tint-ink)}
+.amz{--strong:var(--yellow-strong)}
+.amz-ph{border:2px dashed var(--line);border-radius:999px;padding:8px 16px;font-size:.82rem;color:var(--ink-soft)}
+@media (max-width:560px){.prod{grid-template-columns:minmax(0,1fr)}.prod-img{max-width:260px}}
+.foot-legal{flex-basis:100%;border-top:2px dashed var(--line);padding-top:14px;gap:6px 20px!important}
+
+/* about */
+.about-p{white-space:pre-line;max-width:46em;display:block;font-size:1.05rem}
+.pills{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:14px;margin-top:28px}
+.pill-i{background:var(--tint);border-radius:22px;padding:14px;display:flex;flex-direction:column;align-items:center;gap:4px;font-family:var(--font-display);font-weight:700;font-size:1.15rem;color:var(--tint-ink)}
+.pill-i svg{width:84px;height:auto}
+.checks{list-style:none;margin:0;padding:0;display:grid;gap:12px;max-width:46em}
+.checks li{display:flex;gap:12px;align-items:flex-start}
+.chk{width:26px;height:26px;flex:none;margin-top:2px}
+.badge{width:210px;height:210px;border-radius:50%;border:6px solid var(--pink-strong);background:var(--surface);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-family:var(--font-display);font-weight:800;line-height:.95;font-size:2rem}
+.badge svg{width:96px;height:auto}
+.badge .l2{color:var(--ink)}
+
+/* footer */
+.foot{margin:56px 0 24px;padding:26px;border-radius:28px;background:var(--surface-2);display:flex;flex-wrap:wrap;gap:16px 28px;align-items:center}
+.foot-note{flex:1 1 220px;color:var(--ink-soft);font-size:.92rem}
+.foot nav{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:.9rem;font-weight:500}
+.foot nav a{text-decoration:none}
+.foot nav a:hover{text-decoration:underline}
+
+/* edit mode */
+.editing [data-k]{outline:2px dashed var(--lav-strong);outline-offset:3px;border-radius:6px;cursor:text}
+.editing [data-k]:focus{outline-style:solid;background:color-mix(in srgb,var(--lav-strong) 18%,transparent)}
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--surface);border-top:2px solid var(--lav-strong);box-shadow:var(--shadow);padding:10px max(16px,env(safe-area-inset-left,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-right,0px));display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;justify-content:space-between}
+.bar-msg{font-size:.88rem;flex:1 1 220px;min-width:0}
+.bar-btns{display:flex;flex-wrap:wrap;gap:8px}
+.bar .btn[disabled]{opacity:.45;cursor:default}
+
+/* article editor */
+.scrim{position:fixed;inset:0;z-index:60;background:rgba(40,20,10,.5);display:flex;align-items:flex-start;justify-content:center;overflow-y:auto;padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.sheet{background:var(--bg);border-radius:26px;padding:22px;width:100%;max-width:720px;display:flex;flex-direction:column;gap:6px;margin-block:auto}
+.sheet h2{font-family:var(--font-display);font-size:1.6rem;margin-bottom:6px}
+.sheet label{font-weight:600;font-size:.88rem;margin-top:8px}
+.sheet input[type=text],.sheet select,.sheet textarea{width:100%;background:var(--surface);border:2px solid var(--line);border-radius:14px;padding:9px 12px}
+.sheet textarea{resize:vertical;line-height:1.5}
+.sheet input[type=file]{font-size:.85rem;max-width:100%}
+.sheet input[type=url]{width:100%;background:var(--surface);border:2px solid var(--line);border-radius:14px;padding:9px 12px}
+.sheet-h{font-family:var(--font-display);font-size:1.25rem;margin:18px 0 0}
+.pf{border:2px dashed var(--line);border-radius:16px;padding:6px 14px 14px;margin:8px 0;display:flex;flex-direction:column;gap:4px;min-width:0}
+.pf legend{font-weight:600;padding:0 6px;font-size:.9rem}
+.pf-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.chk-l{display:flex;gap:8px;align-items:flex-start;font-weight:400!important;margin-top:4px!important}
+.rel-list{display:grid;gap:2px;max-height:190px;overflow:auto;border:2px solid var(--line);border-radius:14px;padding:8px 12px;background:var(--surface)}
+.hint{font-size:.8rem;color:var(--ink-soft)}
+.sheet-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.err{color:var(--pink-ink);font-size:.88rem;min-height:1.2em}
+
+@media (prefers-reduced-motion:no-preference){
+  .acard,.cat,.btn{transition:transform .15s ease,box-shadow .15s ease}
+  .acard:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+  .btn:hover{transform:translateY(-1px)}
+}
+</style>
+<div id="app"></div>
+<div id="bar"></div>
+<div id="modal" hidden></div>
+<script id="site-data" type="application/json">{"texts":{},"articles":[{"id":"washable-markers","cat":"crafts","motif":"pencils","date":"2026-10-14","affiliate":true,"title":"7 Best Washable Markers for Kids","subtitle":"Fun Picks for Little Artists","summary":"Fun picks for little artists, creative play, coloring, and crafts.","intro":"Markers are one of the easiest ways to get kids drawing, coloring and making. For parents, caregivers and teachers, cleanup is often part of the decision, which is why washable markers are such a popular choice.\n\nIn this guide we share a washable marker pick for little artists, plus what to look for when you choose a set and fun ways to use them at home or in the classroom.","products":[{"id":"p-crayola-40","name":"Crayola Ultra-Clean Washable Markers, 40 Count","desc":"This 40-count set offers a variety of bright colors for drawing, coloring, and creative projects. The washable design can make cleanup easier for parents and teachers after creative time.","why":"It is a big set with a wide range of bright colors, so there is plenty of choice for drawing, coloring and creative projects. The washable design can also make cleanup easier after creative time.","bestFor":"Parents and teachers who want a large variety of colors for drawing, coloring and craft projects.","url":"https://link.amazon/B08SLgsYd","img":"fb38d58caabcc405cc8acbd66b467242"}],"guideTitle":"What to Look for in Washable Markers","guide":"Not all markers are the same, and a few simple checks can help you choose a set that suits your child and your space.\n\n- **Age suitability:** Check the age range on the packaging and choose a size and grip that feel comfortable for your child.\n- **Washability:** Read the label to see what the markers are designed to wash from. If you are unsure, test on a small, hidden spot first.\n- **Number of colors:** Bigger sets give more choice for colorful projects. Smaller sets are easier to store and keep track of.\n- **Tip type:** Broad tips are handy for coloring larger areas. Finer tips are better for details and writing practice.\n- **Ease of use:** Look for caps that are easy to take off and put back on.\n- **Storage:** A box or tray that holds every marker keeps a set together and makes tidy-up quicker.\n- **Safety and supervision:** Follow the manufacturer’s age guidance and supervise young children while they use markers.","tipsTitle":"Fun Ways to Use Washable Markers","tips":"Washable markers can be used for much more than coloring pages. Here are a few simple ideas to try.\n\n- **Coloring pages:** Print coloring pages or let your child draw their own scene.\n- **Drawing challenges:** Try “draw your favorite animal in two minutes” or “draw a monster with three eyes”.\n- **Homemade cards:** Make birthday, thank-you or holiday cards for family and friends.\n- **Nature drawings:** After a walk, draw the leaves, flowers or bugs you spotted.\n- **Letter and number practice:** Trace letters and numbers in big, bright colors.\n- **Simple craft projects:** Decorate paper crowns, bookmarks or paper bags.","final":"A good set of washable markers can make creative time feel easier for everyone. Think about your child’s age, how many colors you need and how you plan to store them, then pick a set that fits.\n\nWhatever you choose, the best part is watching little artists make something that is all their own.","related":[],"draft":false,"img":"7b616d49e0ec0e7cb4603d5d8e51e905"},{"id":"easy-crafts-at-home","cat":"activities","motif":"pencils","date":"2026-10-13","draft":true,"title":"10 Easy Crafts Kids Can Make at Home","summary":"Coming soon.","intro":"","subtitle":"","products":[],"guideTitle":"","guide":"","tipsTitle":"","tips":"","final":"","related":[],"affiliate":false},{"id":"creative-toys","cat":"toys","motif":"star","date":"2026-10-13","draft":true,"title":"Best Creative Toys for Little Learners","summary":"Coming soon.","intro":"","subtitle":"","products":[],"guideTitle":"","guide":"","tipsTitle":"","tips":"","final":"","related":[],"affiliate":false},{"id":"act1","cat":"activities","motif":"rainbow","date":"2026-10-12","title":"10 Screen-Free Activities for Preschoolers","summary":"Ten easy ways to fill an afternoon with hands-on play that needs almost no setup.","intro":"Preschoolers learn best through play they can touch, move and repeat. These ideas use things most homes already have: a sensory bin of dry rice or pasta, a blanket fort, a scavenger hunt around the house, chalk on the pavement, a bowl of water with cups to pour, a pretend shop, a playdough kitchen, a scarf dance party, a sorting game with buttons or socks, and a story told with soft toys.\n\nPick one or two and save the rest for another day. Let your child lead and follow their questions. Five focused minutes often matters more than an hour of planned fun.\n\nTip: keep a small basket of open-ended items such as cardboard tubes, ribbons and clothespins so ideas are always within reach. Stay close during sensory play and keep small items away from children under three.","subtitle":"","products":[],"guideTitle":"","guide":"","tipsTitle":"","tips":"","final":"","related":[],"affiliate":false,"draft":false},{"id":"act2","cat":"activities","motif":"pencils","date":"2026-10-09","title":"Easy Crafts for Kids","summary":"Low-mess craft projects that little hands can finish in under twenty minutes.","intro":"Short crafts keep young children interested from start to finish. Try paper plate rainbows, handprint animals, collages made from old magazine pages, or binoculars made from cardboard tubes and string.\n\nSet everything out before you begin, cover the table, and let your child make their own choices about colour and placement. The finished piece does not need to look like the example.\n\nDisplay the result on the fridge or a string across a wall. Children enjoy seeing their work treated as something worth showing.","subtitle":"","products":[],"guideTitle":"","guide":"","tipsTitle":"","tips":"","final":"","related":[],"affiliate":false,"draft":false},{"id":"act3","cat":"activities","motif":"sun","date":"2026-10-07","title":"Indoor Activities for Rainy Days","summary":"Burn off energy and keep curiosity going when the weather keeps you inside.","intro":"A cushion obstacle course, a balloon that must not touch the floor, and an indoor treasure hunt all get children moving without much space. For quieter time, try kitchen science: ask your child to guess which objects sink or float, then test each one in a bowl of water.\n\nA cardboard box can become a car wash, a puppet theatre or a shop. Offer the box and a few markers, then step back.\n\nAlternate lively games with calm ones so the afternoon has a natural rhythm.","subtitle":"","products":[],"guideTitle":"","guide":"","tipsTitle":"","tips":"","final":"","related":[],"affiliate":false,"draft":false},{"id":"act4","cat":"activities","motif":"star","date":"2026-10-03","title":"Creative Weekend Activities","summary":"Family-friendly ideas that turn an ordinary weekend into a small adventure.","intro":"Go on a nature walk and collect leaves, petals and pebbles to turn into a collage when you get home. Bake simple cookies together and let your child measure and stir. Build a cardboard city, or hold a family art show with a gallery tour and handmade tickets.\n\nChildren remember shared time more than the activity itself, so keep plans flexible and finish while everyone is still enjoying it.","subtitle":"","products":[],"guideTitle":"","guide":"","tipsTitle":"","tips":"","final":"","related":[],"affiliate":false,"draft":false},{"id":"toy1","cat":"toys","motif":"rings","date":"2026-10-11","title":"Best Educational Toys for Preschoolers","summary":"What to look for when choosing toys that build skills and still feel like play.","intro":"The most useful preschool toys can be used in more than one way. Stacking rings, wooden blocks, simple puzzles, pretend play sets and picture books all let children experiment, make choices and tell their own stories.\n\nLook for sturdy materials, a clear age label and pieces that suit your child’s hands. A toy that grows with your child, first for stacking and later for counting or sorting, will stay in use longer.\n\nCheck the label for small parts if there are younger siblings in the house.","subtitle":"","products":[],"guideTitle":"","guide":"","tipsTitle":"","tips":"","final":"","related":[],"affiliate":false,"draft":false},{"id":"toy2","cat":"toys","motif":"rainbow","date":"2026-10-08","title":"10 Learning Toys That Make Play Fun","summary":"A quick tour of toy types that teach through play.","intro":"Shape sorters, magnetic tiles, counting beads, alphabet puzzles, a play clock, building bricks, musical shakers, memory card games, balance toys and a pretend kitchen each support a different skill, from fine motor control to early maths and language.\n\nYou do not need all ten. Choose one or two that match what your child is curious about right now, and rotate them so play stays fresh.","subtitle":"","products":[],"guideTitle":"","guide":"","tipsTitle":"","tips":"","final":"","related":[],"affiliate":false,"draft":false},{"id":"toy3","cat":"toys","motif":"sun","date":"2026-10-05","title":"Montessori-Inspired Toys for Little Learners","summary":"Simple, natural and child-sized: the ideas behind a calm play shelf.","intro":"Montessori-inspired play favours toys with one clear purpose, made from natural materials and sized for small hands. A low shelf with a handful of choices helps children pick for themselves and put things back.\n\nRotate a few toys at a time instead of showing everything at once. Fewer options often lead to longer, more focused play.\n\nYou do not need special products to borrow the idea. Wooden spoons, bowls and a small jug can be just as useful.","subtitle":"","products":[],"guideTitle":"","guide":"","tipsTitle":"","tips":"","final":"","related":[],"affiliate":false,"draft":false},{"id":"toy4","cat":"toys","motif":"star","date":"2026-10-01","title":"STEM Toys for Kids","summary":"Science, technology, engineering and maths, explained through things children can build and test.","intro":"STEM play is about asking questions and trying things. Building sets, magnets, measuring cups and balance scales all invite children to predict, test and adjust.\n\nWhile your child plays, ask open questions such as what do you think will happen, or how could we make it taller. For older children, simple circuit kits are a good next step.\n\nCelebrate mistakes. A tower that falls is information.","subtitle":"","products":[],"guideTitle":"","guide":"","tipsTitle":"","tips":"","final":"","related":[],"affiliate":false,"draft":false},{"id":"cra1","cat":"crafts","motif":"palette","date":"2026-10-10","title":"Best Art Supplies for Kids","summary":"A starter list of safe, forgiving supplies for young artists.","intro":"Start with washable paints, chunky crayons, safety scissors, glue sticks, a big roll of paper and some modelling dough. Look for labels that say non-toxic and suit your child’s age.\n\nKeep supplies together on one tray or in a low box so your child can start without help. A smock and a wipeable mat make cleaning up quick and take the worry out of mess.","subtitle":"","products":[],"guideTitle":"","guide":"","tipsTitle":"","tips":"","final":"","related":[],"affiliate":false,"draft":false},{"id":"cra2","cat":"crafts","motif":"rainbow","date":"2026-10-06","title":"Easy Painting Activities","summary":"Five ways to paint that go beyond the brush.","intro":"Try sponge painting, finger painting, ice-cube painting with a little watercolour in each tray, bubble wrap prints, and stamps cut from potatoes or peppers.\n\nTalk about what your child is doing rather than what it looks like: you mixed blue and yellow and made green. Process matters more than the picture.","subtitle":"","products":[],"guideTitle":"","guide":"","tipsTitle":"","tips":"","final":"","related":[],"affiliate":false,"draft":false},{"id":"cra3","cat":"crafts","motif":"pencils","date":"2026-10-04","title":"Fun Craft Kits for Preschoolers","summary":"How to pick a craft kit that your child can finish happily.","intro":"A good preschool kit has few steps, large pieces and clear pictures. Check that the materials are non-toxic and that the age range matches your child.\n\nOr make your own: put paper shapes, glue, safety scissors and stickers in a box with a simple idea, such as make a robot, and let your child decide the rest.","subtitle":"","products":[],"guideTitle":"","guide":"","tipsTitle":"","tips":"","final":"","related":[],"affiliate":false,"draft":false},{"id":"cra4","cat":"crafts","motif":"star","date":"2026-09-30","title":"Creative Craft Ideas for Kids","summary":"Turn recycling and everyday items into something new.","intro":"Cardboard tubes become rockets, egg cartons become caterpillars, and old newspaper turns into paper chains. Smooth pebbles can be painted as ladybirds, and salt dough can be shaped into ornaments and baked.\n\nCollect a craft box through the week and let your child pick what to use. Having a choice makes children more invested in the finished piece.","subtitle":"","products":[],"guideTitle":"","guide":"","tipsTitle":"","tips":"","final":"","related":[],"affiliate":false,"draft":false},{"id":"gif1","cat":"gifts","motif":"gift","date":"2026-10-13","title":"Best Gifts for 4-Year-Olds","summary":"Gift ideas that match how four-year-olds like to play.","intro":"At four, children love pretend play, early puzzles, art supplies, picture books and active outdoor toys. Simple cooperative board games are a good way to practise turn-taking.\n\nThink about what your child already enjoys and pick something that adds to it. A set of dress-up pieces for a child who loves stories, or a chunky chalk set for one who draws on everything, will be used.","subtitle":"","products":[],"guideTitle":"","guide":"","tipsTitle":"","tips":"","final":"","related":[],"affiliate":false,"draft":false},{"id":"gif2","cat":"gifts","motif":"palette","date":"2026-10-02","title":"Creative Gifts for Little Artists","summary":"Gifts that give young creators more ways to make things.","intro":"A sketchbook with thick pages, a watercolour set, a tabletop easel, air-dry clay, stickers and a box of safe craft supplies all make good gifts.\n\nAdd a small apron and a note inviting your child to make something for you. The gift then comes with a first project.","subtitle":"","products":[],"guideTitle":"","guide":"","tipsTitle":"","tips":"","final":"","related":[],"affiliate":false,"draft":false},{"id":"gif3","cat":"gifts","motif":"book","date":"2026-09-29","title":"Educational Birthday Gifts","summary":"Gifts that teach quietly while children enjoy them.","intro":"Books, puzzles, building sets, memory games and beginner science kits are all gifts that encourage learning through play.\n\nIf you are not sure what a child already owns, ask a parent. A short note about why you chose the gift makes it feel more personal.","subtitle":"","products":[],"guideTitle":"","guide":"","tipsTitle":"","tips":"","final":"","related":[],"affiliate":false,"draft":false},{"id":"gif4","cat":"gifts","motif":"rainbow","date":"2026-09-27","title":"Screen-Free Gift Ideas","summary":"Gifts that get children moving, making and exploring.","intro":"Experience gifts such as a zoo or museum pass, a baking set, a small garden kit or outdoor games give children something to do together with family.\n\nWrap a clue about the plan inside a small box so there is something to open on the day.","subtitle":"","products":[],"guideTitle":"","guide":"","tipsTitle":"","tips":"","final":"","related":[],"affiliate":false,"draft":false}]}</script>
+<script id="app-code">
+(function(){
+'use strict';
+
+/* ---------- fixed pieces used when the page saves itself ---------- */
+var RESET=':root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}';
+var PAGE_HEAD='<title>Playful Little Finds</title>\n<meta name="claude:viewport-fit-sides" content="cover">\n<link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Poppins:wght@400;500;600&display=swap">\n';
+
+/* ---------- logo ---------- */
+var LOGO='data:image/webp;base64,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';
+function logoBadge(){return '<span class="mini-badge"><img src="'+LOGO+'" alt="" width="58" height="58"></span>';}
+
+/* ---------- content model ---------- */
+var CATS=[
+ {id:'activities',icon:'🌈',nav:'Kids Activities',card:'Learning Activities',cardText:'Simple activities to make learning fun',page:'Fun Activities for Kids',sub:'Simple ideas for play, learning and quality time together.',motif:'rainbow'},
+ {id:'toys',icon:'🧸',nav:'Educational Toys',card:'Educational Toys',cardText:'Fun and meaningful toys for every stage',page:'Educational Toys & Learning Finds',sub:'Toys that make playtime more meaningful.',motif:'rings'},
+ {id:'crafts',icon:'🎨',nav:'Arts & Crafts',card:'Arts & Crafts',cardText:'Creative ideas and supplies for little artists',page:'Arts & Crafts for Little Creators',sub:'Fun craft ideas, art supplies and creative activities.',motif:'palette'},
+ {id:'gifts',icon:'🎁',nav:'Gift Ideas',card:'Kids’ Gift Ideas',cardText:'Thoughtful and fun gifts for any occasion',page:'Kids’ Gift Ideas',sub:'Thoughtful gifts that inspire creativity, imagination and learning.',motif:'gift'}
+];
+var TEXTP={contact:'Contact',privacy:'Privacy Policy',affiliate:'Affiliate Disclosure',terms:'Terms'};
+var HOME_ORDER=['crafts','toys','activities','gifts'];
+var MOTIF_NAMES={rainbow:'Rainbow',star:'Star',rings:'Stacking rings',palette:'Paint palette',gift:'Gift box',book:'Open book',sun:'Sunshine',pencils:'Pencil cup'};
+
+var DEF={
+ 'hero.tag':'Fun Finds for Little Learners & Creative Kids',
+ 'hero.sub':'Discover fun ideas, educational toys, creative activities, and useful products to inspire play, learning, and creativity.',
+ 'hero.cta':'Explore Now',
+ 'home.cats':'Pick a place to start',
+ 'home.latest':'Latest Articles & Guides',
+ 'articles.title':'Articles & Guides',
+ 'articles.sub':'Fun ideas, helpful guides, and creative finds for little learners.',
+ 'tpl.picks':'Our Top Picks',
+ 'tpl.guide':'What to Look For',
+ 'tpl.tips':'Fun Ideas & Tips',
+ 'tpl.final':'Final Thoughts',
+ 'tpl.related':'You May Also Like',
+ 'affiliate.note':'Affiliate Disclosure: As an Amazon Associate I earn from qualifying purchases.',
+ 'page.contact.title':'Contact',
+ 'page.contact.body':'Add your contact details here, for example an email address where readers can reach you.',
+ 'page.privacy.title':'Privacy Policy',
+ 'page.privacy.body':'This page is a placeholder. Add your privacy policy here before sharing the site widely.\n\nA privacy policy usually explains what information a site collects and how it is used. Check what applies to your site and where you live, and consider asking a qualified professional to review it.',
+ 'page.affiliate.title':'Affiliate Disclosure',
+ 'page.affiliate.body':'As an Amazon Associate I earn from qualifying purchases.\n\nThis page is a placeholder. Edit it to add the full wording of your affiliate disclosure.',
+ 'page.terms.title':'Terms',
+ 'page.terms.body':'This page is a placeholder. Add your site terms here.\n\nCheck what applies to your site and where you live, and consider asking a qualified professional to review the wording.',
+ 'about.title':'About Playful Little Finds',
+ 'about.body':'Playful Little Finds was created to help parents, caregivers, teachers, and families discover fun ideas, creative activities, educational resources, and useful products for children.\n\nEvery article is written to be simple to follow and easy to try at home or in the classroom. We look for things that spark curiosity, keep little hands busy, and make learning feel like play.',
+ 'about.listTitle':'What you will find here',
+ 'about.l1':'Simple activities you can start with things already at home',
+ 'about.l2':'Toy and gift ideas for every age and stage',
+ 'about.l3':'Craft projects with clear, short steps',
+ 'about.l4':'Tips for choosing safe, useful products',
+ 'about.l5':'Articles you can read in a few minutes',
+ 'footer.note':'Fun finds for little learners and creative kids.'
+};
+CATS.forEach(function(c){
+ DEF['c.'+c.id+'.card']=c.card;DEF['c.'+c.id+'.cardText']=c.cardText;
+ DEF['c.'+c.id+'.page']=c.page;DEF['c.'+c.id+'.sub']=c.sub;
+});
+
+var SEED=[
+ {id:'washable-markers',cat:'crafts',motif:'pencils',date:'2026-10-14',affiliate:true,
+  title:'7 Best Washable Markers for Kids',subtitle:'Fun Picks for Little Artists',
+  summary:'Fun picks for little artists, creative play, coloring, and crafts.',
+  intro:'Markers are one of the easiest ways to get kids drawing, coloring and making. For parents, caregivers and teachers, cleanup is often part of the decision, which is why washable markers are such a popular choice.\n\nIn this guide we share a washable marker pick for little artists, plus what to look for when you choose a set and fun ways to use them at home or in the classroom.',
+  products:[{id:'p-crayola-40',name:'Crayola Ultra-Clean Washable Markers, 40 Count',
+   desc:'This 40-count set offers a variety of bright colors for drawing, coloring, and creative projects. The washable design can make cleanup easier for parents and teachers after creative time.',
+   why:'It is a big set with a wide range of bright colors, so there is plenty of choice for drawing, coloring and creative projects. The washable design can also make cleanup easier after creative time.',
+   bestFor:'Parents and teachers who want a large variety of colors for drawing, coloring and craft projects.',url:'',img:''}],
+  guideTitle:'What to Look for in Washable Markers',
+  guide:'Not all markers are the same, and a few simple checks can help you choose a set that suits your child and your space.\n\n- **Age suitability:** Check the age range on the packaging and choose a size and grip that feel comfortable for your child.\n- **Washability:** Read the label to see what the markers are designed to wash from. If you are unsure, test on a small, hidden spot first.\n- **Number of colors:** Bigger sets give more choice for colorful projects. Smaller sets are easier to store and keep track of.\n- **Tip type:** Broad tips are handy for coloring larger areas. Finer tips are better for details and writing practice.\n- **Ease of use:** Look for caps that are easy to take off and put back on.\n- **Storage:** A box or tray that holds every marker keeps a set together and makes tidy-up quicker.\n- **Safety and supervision:** Follow the manufacturer’s age guidance and supervise young children while they use markers.',
+  tipsTitle:'Fun Ways to Use Washable Markers',
+  tips:'Washable markers can be used for much more than coloring pages. Here are a few simple ideas to try.\n\n- **Coloring pages:** Print coloring pages or let your child draw their own scene.\n- **Drawing challenges:** Try “draw your favorite animal in two minutes” or “draw a monster with three eyes”.\n- **Homemade cards:** Make birthday, thank-you or holiday cards for family and friends.\n- **Nature drawings:** After a walk, draw the leaves, flowers or bugs you spotted.\n- **Letter and number practice:** Trace letters and numbers in big, bright colors.\n- **Simple craft projects:** Decorate paper crowns, bookmarks or paper bags.',
+  final:'A good set of washable markers can make creative time feel easier for everyone. Think about your child’s age, how many colors you need and how you plan to store them, then pick a set that fits.\n\nWhatever you choose, the best part is watching little artists make something that is all their own.'},
+ {id:'easy-crafts-at-home',cat:'activities',motif:'pencils',date:'2026-10-13',draft:true,title:'10 Easy Crafts Kids Can Make at Home',summary:'Coming soon.'},
+ {id:'creative-toys',cat:'toys',motif:'star',date:'2026-10-13',draft:true,title:'Best Creative Toys for Little Learners',summary:'Coming soon.'},
+ {id:'act1',cat:'activities',motif:'rainbow',date:'2026-10-12',title:'10 Screen-Free Activities for Preschoolers',
+  summary:'Ten easy ways to fill an afternoon with hands-on play that needs almost no setup.',
+  body:'Preschoolers learn best through play they can touch, move and repeat. These ideas use things most homes already have: a sensory bin of dry rice or pasta, a blanket fort, a scavenger hunt around the house, chalk on the pavement, a bowl of water with cups to pour, a pretend shop, a playdough kitchen, a scarf dance party, a sorting game with buttons or socks, and a story told with soft toys.\n\nPick one or two and save the rest for another day. Let your child lead and follow their questions. Five focused minutes often matters more than an hour of planned fun.\n\nTip: keep a small basket of open-ended items such as cardboard tubes, ribbons and clothespins so ideas are always within reach. Stay close during sensory play and keep small items away from children under three.'},
+ {id:'act2',cat:'activities',motif:'pencils',date:'2026-10-09',title:'Easy Crafts for Kids',
+  summary:'Low-mess craft projects that little hands can finish in under twenty minutes.',
+  body:'Short crafts keep young children interested from start to finish. Try paper plate rainbows, handprint animals, collages made from old magazine pages, or binoculars made from cardboard tubes and string.\n\nSet everything out before you begin, cover the table, and let your child make their own choices about colour and placement. The finished piece does not need to look like the example.\n\nDisplay the result on the fridge or a string across a wall. Children enjoy seeing their work treated as something worth showing.'},
+ {id:'act3',cat:'activities',motif:'sun',date:'2026-10-07',title:'Indoor Activities for Rainy Days',
+  summary:'Burn off energy and keep curiosity going when the weather keeps you inside.',
+  body:'A cushion obstacle course, a balloon that must not touch the floor, and an indoor treasure hunt all get children moving without much space. For quieter time, try kitchen science: ask your child to guess which objects sink or float, then test each one in a bowl of water.\n\nA cardboard box can become a car wash, a puppet theatre or a shop. Offer the box and a few markers, then step back.\n\nAlternate lively games with calm ones so the afternoon has a natural rhythm.'},
+ {id:'act4',cat:'activities',motif:'star',date:'2026-10-03',title:'Creative Weekend Activities',
+  summary:'Family-friendly ideas that turn an ordinary weekend into a small adventure.',
+  body:'Go on a nature walk and collect leaves, petals and pebbles to turn into a collage when you get home. Bake simple cookies together and let your child measure and stir. Build a cardboard city, or hold a family art show with a gallery tour and handmade tickets.\n\nChildren remember shared time more than the activity itself, so keep plans flexible and finish while everyone is still enjoying it.'},
+
+ {id:'toy1',cat:'toys',motif:'rings',date:'2026-10-11',title:'Best Educational Toys for Preschoolers',
+  summary:'What to look for when choosing toys that build skills and still feel like play.',
+  body:'The most useful preschool toys can be used in more than one way. Stacking rings, wooden blocks, simple puzzles, pretend play sets and picture books all let children experiment, make choices and tell their own stories.\n\nLook for sturdy materials, a clear age label and pieces that suit your child’s hands. A toy that grows with your child, first for stacking and later for counting or sorting, will stay in use longer.\n\nCheck the label for small parts if there are younger siblings in the house.'},
+ {id:'toy2',cat:'toys',motif:'rainbow',date:'2026-10-08',title:'10 Learning Toys That Make Play Fun',
+  summary:'A quick tour of toy types that teach through play.',
+  body:'Shape sorters, magnetic tiles, counting beads, alphabet puzzles, a play clock, building bricks, musical shakers, memory card games, balance toys and a pretend kitchen each support a different skill, from fine motor control to early maths and language.\n\nYou do not need all ten. Choose one or two that match what your child is curious about right now, and rotate them so play stays fresh.'},
+ {id:'toy3',cat:'toys',motif:'sun',date:'2026-10-05',title:'Montessori-Inspired Toys for Little Learners',
+  summary:'Simple, natural and child-sized: the ideas behind a calm play shelf.',
+  body:'Montessori-inspired play favours toys with one clear purpose, made from natural materials and sized for small hands. A low shelf with a handful of choices helps children pick for themselves and put things back.\n\nRotate a few toys at a time instead of showing everything at once. Fewer options often lead to longer, more focused play.\n\nYou do not need special products to borrow the idea. Wooden spoons, bowls and a small jug can be just as useful.'},
+ {id:'toy4',cat:'toys',motif:'star',date:'2026-10-01',title:'STEM Toys for Kids',
+  summary:'Science, technology, engineering and maths, explained through things children can build and test.',
+  body:'STEM play is about asking questions and trying things. Building sets, magnets, measuring cups and balance scales all invite children to predict, test and adjust.\n\nWhile your child plays, ask open questions such as what do you think will happen, or how could we make it taller. For older children, simple circuit kits are a good next step.\n\nCelebrate mistakes. A tower that falls is information.'},
+
+ {id:'cra1',cat:'crafts',motif:'palette',date:'2026-10-10',title:'Best Art Supplies for Kids',
+  summary:'A starter list of safe, forgiving supplies for young artists.',
+  body:'Start with washable paints, chunky crayons, safety scissors, glue sticks, a big roll of paper and some modelling dough. Look for labels that say non-toxic and suit your child’s age.\n\nKeep supplies together on one tray or in a low box so your child can start without help. A smock and a wipeable mat make cleaning up quick and take the worry out of mess.'},
+ {id:'cra2',cat:'crafts',motif:'rainbow',date:'2026-10-06',title:'Easy Painting Activities',
+  summary:'Five ways to paint that go beyond the brush.',
+  body:'Try sponge painting, finger painting, ice-cube painting with a little watercolour in each tray, bubble wrap prints, and stamps cut from potatoes or peppers.\n\nTalk about what your child is doing rather than what it looks like: you mixed blue and yellow and made green. Process matters more than the picture.'},
+ {id:'cra3',cat:'crafts',motif:'pencils',date:'2026-10-04',title:'Fun Craft Kits for Preschoolers',
+  summary:'How to pick a craft kit that your child can finish happily.',
+  body:'A good preschool kit has few steps, large pieces and clear pictures. Check that the materials are non-toxic and that the age range matches your child.\n\nOr make your own: put paper shapes, glue, safety scissors and stickers in a box with a simple idea, such as make a robot, and let your child decide the rest.'},
+ {id:'cra4',cat:'crafts',motif:'star',date:'2026-09-30',title:'Creative Craft Ideas for Kids',
+  summary:'Turn recycling and everyday items into something new.',
+  body:'Cardboard tubes become rockets, egg cartons become caterpillars, and old newspaper turns into paper chains. Smooth pebbles can be painted as ladybirds, and salt dough can be shaped into ornaments and baked.\n\nCollect a craft box through the week and let your child pick what to use. Having a choice makes children more invested in the finished piece.'},
+
+ {id:'gif1',cat:'gifts',motif:'gift',date:'2026-10-13',title:'Best Gifts for 4-Year-Olds',
+  summary:'Gift ideas that match how four-year-olds like to play.',
+  body:'At four, children love pretend play, early puzzles, art supplies, picture books and active outdoor toys. Simple cooperative board games are a good way to practise turn-taking.\n\nThink about what your child already enjoys and pick something that adds to it. A set of dress-up pieces for a child who loves stories, or a chunky chalk set for one who draws on everything, will be used.'},
+ {id:'gif2',cat:'gifts',motif:'palette',date:'2026-10-02',title:'Creative Gifts for Little Artists',
+  summary:'Gifts that give young creators more ways to make things.',
+  body:'A sketchbook with thick pages, a watercolour set, a tabletop easel, air-dry clay, stickers and a box of safe craft supplies all make good gifts.\n\nAdd a small apron and a note inviting your child to make something for you. The gift then comes with a first project.'},
+ {id:'gif3',cat:'gifts',motif:'book',date:'2026-09-29',title:'Educational Birthday Gifts',
+  summary:'Gifts that teach quietly while children enjoy them.',
+  body:'Books, puzzles, building sets, memory games and beginner science kits are all gifts that encourage learning through play.\n\nIf you are not sure what a child already owns, ask a parent. A short note about why you chose the gift makes it feel more personal.'},
+ {id:'gif4',cat:'gifts',motif:'rainbow',date:'2026-09-27',title:'Screen-Free Gift Ideas',
+  summary:'Gifts that get children moving, making and exploring.',
+  body:'Experience gifts such as a zoo or museum pass, a baking set, a small garden kit or outdoor games give children something to do together with family.\n\nWrap a clue about the plan inside a small box so there is something to open on the day.'}
+];
+
+/* ---------- inline pictures ---------- */
+var MI={
+ rainbow:'<g fill="none" stroke-linecap="round" stroke-width="13"><path class="s-pink" d="M42 118a78 78 0 0 1 156 0"/><path class="s-yellow" d="M58 118a62 62 0 0 1 124 0"/><path class="s-mint" d="M74 118a46 46 0 0 1 92 0"/><path class="s-blue" d="M90 118a30 30 0 0 1 60 0"/></g><ellipse class="f-cream" cx="40" cy="124" rx="27" ry="13"/><ellipse class="f-cream" cx="200" cy="124" rx="27" ry="13"/><ellipse class="f-cream" cx="62" cy="118" rx="18" ry="11"/><ellipse class="f-cream" cx="178" cy="118" rx="18" ry="11"/>',
+ star:'<polygon class="f-yellow s-yellow" stroke-width="8" stroke-linejoin="round" points="120,20 134.1,58.6 175.2,60.1 142.8,85.4 154.1,124.9 120,102 85.9,124.9 97.2,85.4 64.8,60.1 105.9,58.6"/><circle class="f-pink" cx="46" cy="40" r="9"/><circle class="f-mint" cx="198" cy="48" r="7"/><circle class="f-blue" cx="196" cy="116" r="9"/><circle class="f-lav" cx="42" cy="110" r="6"/>',
+ rings:'<rect class="f-lav" x="114" y="24" width="12" height="104" rx="6"/><rect class="f-blue" x="64" y="122" width="112" height="16" rx="8"/><rect class="f-pink" x="75" y="98" width="90" height="22" rx="11"/><rect class="f-yellow" x="86" y="76" width="68" height="22" rx="11"/><rect class="f-mint" x="97" y="54" width="46" height="22" rx="11"/><circle class="f-pink" cx="120" cy="26" r="11"/>',
+ palette:'<path class="f-cream" d="M120 22C70 22 32 50 32 86c0 30 26 44 50 38 14-3 16 10 30 14 40 9 72-18 72-54 0-34-28-62-64-62z"/><circle class="f-pink" cx="78" cy="72" r="11"/><circle class="f-yellow" cx="108" cy="50" r="11"/><circle class="f-mint" cx="144" cy="52" r="11"/><circle class="f-blue" cx="170" cy="78" r="11"/><circle class="s-line" cx="92" cy="106" r="9" fill="none" stroke-width="3"/><path class="s-lav" d="M186 132 218 72" stroke-width="9" stroke-linecap="round" fill="none"/><path class="s-pink" d="M218 72 224 60" stroke-width="12" stroke-linecap="round" fill="none"/>',
+ gift:'<rect class="f-pink" x="72" y="70" width="96" height="62" rx="8"/><rect class="f-yellow" x="64" y="50" width="112" height="26" rx="8"/><rect class="f-lav" x="112" y="50" width="16" height="82"/><path class="s-lav" fill="none" stroke-width="8" stroke-linejoin="round" d="M120 50c-6-24-36-24-30-6 2 8 18 8 30 6zM120 50c6-24 36-24 30-6-2 8-18 8-30 6z"/><circle class="f-mint" cx="44" cy="44" r="7"/><circle class="f-blue" cx="196" cy="34" r="8"/><circle class="f-yellow" cx="198" cy="112" r="6"/>',
+ book:'<path class="f-lav" d="M28 32v100c30-8 64-6 92 8 28-14 62-16 92-8V32z"/><path class="f-cream" d="M120 40c-22-12-54-14-82-6v84c28-8 60-6 82 6z"/><path class="f-cream" d="M120 40c22-12 54-14 82-6v84c-28-8-60-6-82 6z"/><path class="s-line" fill="none" stroke-width="4" stroke-linecap="round" d="M56 58c14-3 28-3 40 2M56 76c14-3 28-3 40 2M56 94c14-3 28-3 40 2"/><path class="f-pink" d="M160 66c-7-12-24-5-17 9 4 7 17 14 17 14s13-7 17-14c7-14-10-21-17-9z"/>',
+ sun:'<circle class="f-yellow" cx="120" cy="75" r="30"/><g class="s-yellow" stroke-width="8" stroke-linecap="round"><path d="M162 75h16M149.7 104.7l11.3 11.3M120 117v16M90.3 104.7L79 116M78 75H62M90.3 45.3L79 34M120 33V17M149.7 45.3L161 34"/></g><circle class="f-ink" cx="109" cy="70" r="3.5"/><circle class="f-ink" cx="131" cy="70" r="3.5"/><path class="s-ink" fill="none" stroke-width="3" stroke-linecap="round" d="M108 84c7 8 17 8 24 0"/>',
+ pencils:'<rect class="f-pink" x="70" y="42" width="26" height="82"/><polygon class="f-cream" points="70,42 96,42 83,20"/><rect class="f-yellow" x="106" y="28" width="26" height="96"/><polygon class="f-cream" points="106,28 132,28 119,6"/><rect class="f-mint" x="142" y="48" width="26" height="76"/><polygon class="f-cream" points="142,48 168,48 155,26"/><rect class="f-blue" x="56" y="104" width="128" height="38" rx="12"/><circle class="f-cream" cx="84" cy="123" r="4"/><circle class="f-cream" cx="120" cy="123" r="4"/><circle class="f-cream" cx="156" cy="123" r="4"/>'
+};
+function motif(n){return '<svg viewBox="0 0 240 150" aria-hidden="true">'+(MI[n]||MI.star)+'</svg>';}
+var HERO_SVG='<svg viewBox="0 0 480 430" role="img" aria-label="A stack of play, learn, create and grow books beside a rainbow, a sun, a star and a pencil cup">'+
+ '<circle class="f-cream" cx="250" cy="215" r="176" opacity=".5"/>'+
+ '<g transform="translate(150 -60) scale(1.5)">'+MI.rainbow+'</g>'+
+ '<g transform="translate(-4 36) scale(.62)">'+MI.sun+'</g>'+
+ '<g><rect class="f-mint" x="46" y="368" width="206" height="46" rx="9"/><rect class="f-cream" x="232" y="374" width="14" height="34" rx="4"/><text class="bk-t" x="68" y="398">GROW</text>'+
+ '<rect class="f-yellow" x="58" y="322" width="196" height="46" rx="9"/><rect class="f-cream" x="236" y="328" width="12" height="34" rx="4"/><text class="bk-t" x="80" y="352">CREATE</text>'+
+ '<rect class="f-pink" x="40" y="276" width="204" height="46" rx="9"/><rect class="f-cream" x="226" y="282" width="12" height="34" rx="4"/><text class="bk-t" x="62" y="306">LEARN</text>'+
+ '<rect class="f-blue" x="52" y="230" width="198" height="46" rx="9"/><rect class="f-cream" x="232" y="236" width="12" height="34" rx="4"/><text class="bk-t" x="74" y="260">PLAY</text></g>'+
+ '<g transform="translate(262 292) scale(.85)">'+MI.pencils+'</g>'+
+ '<g transform="translate(300 214) scale(.5)">'+MI.star+'</g>'+
+ '<path class="f-pink" d="M430 120c-8-14-28-6-20 10 5 8 20 16 20 16s15-8 20-16c8-16-12-24-20-10z"/>'+
+ '<path class="f-pink" d="M70 190c-5-9-18-4-13 6 3 5 13 10 13 10s10-5 13-10c5-10-8-15-13-6z"/>'+
+ '</svg>';
+var RAINBOW_MINI='<svg viewBox="26 38 188 96" aria-hidden="true">'+MI.rainbow+'</svg>';
+
+/* ---------- state ---------- */
+function clone(o){return JSON.parse(JSON.stringify(o));}
+function readData(){try{return JSON.parse(document.getElementById('site-data').textContent)||{};}catch(e){return {};}}
+var data=readData();
+var state={texts:data.texts||{},articles:Array.isArray(data.articles)?data.articles:clone(SEED)};
+state.articles.forEach(normA);
+var initial=clone(state);
+var catById={};CATS.forEach(function(c){catById[c.id]=c;});
+var editing=false,dirty=false,saving=false,canEdit=false,art=null,assetsApi=null;
+var confirmDel=null,confirmDiscard=false,statusMsg='',draft=null,artFilter='';
+var route=parseHash();
+
+var app=document.getElementById('app'),bar=document.getElementById('bar'),modal=document.getElementById('modal');
+
+/* ---------- helpers ---------- */
+function normA(a){
+ if(a.intro==null)a.intro=a.body||'';
+ delete a.body;
+ a.subtitle=a.subtitle||'';a.summary=a.summary||'';
+ a.products=Array.isArray(a.products)?a.products:[];
+ a.guideTitle=a.guideTitle||'';a.guide=a.guide||'';a.tipsTitle=a.tipsTitle||'';a.tips=a.tips||'';a.final=a.final||'';
+ a.related=Array.isArray(a.related)?a.related:[];a.affiliate=!!a.affiliate;a.draft=!!a.draft;
+ a.products.forEach(function(p){p.id=p.id||blankProduct().id;p.name=p.name||'';p.desc=p.desc||'';p.why=p.why||'';p.bestFor=p.bestFor||'';p.url=p.url||'';p.img=p.img||'';});
+ return a;
+}
+function rich(text){
+ var out=[],list=null,para=[];
+ function inl(s){return esc(s).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');}
+ function fp(){if(para.length){out.push('<p>'+para.map(inl).join('<br>')+'</p>');para=[];}}
+ function fl(){if(list){out.push('<ul>'+list.map(function(i){return '<li>'+inl(i)+'</li>';}).join('')+'</ul>');list=null;}}
+ String(text||'').split('\n').forEach(function(l){
+  var t=l.trim();
+  if(!t){fp();fl();return;}
+  if(/^[-*] /.test(t)){fp();(list=list||[]).push(t.slice(2));return;}
+  if(/^## /.test(t)){fp();fl();out.push('<h3>'+inl(t.slice(3))+'</h3>');return;}
+  fl();para.push(t);
+ });
+ fp();fl();return out.join('');
+}
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function T(k){return state.texts[k]!=null?state.texts[k]:DEF[k];}
+function ed(k,tag,cls,ml){
+ return '<'+tag+(cls?' class="'+cls+'"':'')+' data-k="'+k+'"'+(ml?' data-ml="1"':'')+(editing?' contenteditable="plaintext-only" spellcheck="true"':'')+'>'+esc(T(k))+'</'+tag+'>';
+}
+function wm(text){return '<span class="wm">'+text.split('').map(function(c,i){return '<span class="w'+(i%5)+'">'+esc(c)+'</span>';}).join('')+'</span>';}
+function fmt(iso){var d=new Date(iso+'T12:00:00');return isNaN(d)?'':d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});}
+function findA(id){for(var i=0;i<state.articles.length;i++){if(state.articles[i].id===id)return state.articles[i];}return null;}
+function articlesFor(cat,drafts){return state.articles.filter(function(a){return (!cat||a.cat===cat)&&(drafts||!a.draft);}).sort(function(a,b){if(!!a.draft!==!!b.draft)return a.draft?1:-1;return String(b.date).localeCompare(String(a.date));});}
+function parseHash(){var h=(location.hash||'').replace(/^#/,'');return h||'home';}
+function cover(a,c){
+ if(a.img)return '<img src="/_blob/'+esc(a.img)+'" alt="" loading="lazy">';
+ return motif(a.motif||c.motif);
+}
+
+/* ---------- views ---------- */
+function adminBtns(a){
+ if(confirmDel===a.id)return '<span class="confirm">Delete this article? <button class="mini danger" data-act="del-yes" data-id="'+a.id+'">Delete</button><button class="mini" data-act="del-no">Keep</button></span>';
+ return '<span class="confirm"><button class="mini" data-act="edit-article" data-id="'+a.id+'">Edit</button><button class="mini danger" data-act="del-ask" data-id="'+a.id+'">Delete</button></span>';
+}
+function cardHtml(a){
+ var c=catById[a.cat]||CATS[0],href='#a-'+a.id,live=!a.draft;
+ return '<article class="acard k-'+c.id+(live?' clickable':'')+'"'+(live?' data-r="a-'+esc(a.id)+'"':'')+'>'+
+  '<div class="acover">'+cover(a,c)+'</div>'+
+  '<div class="abody"><span class="chip">'+c.icon+' '+esc(c.nav)+'</span>'+
+  '<h3 class="atitle">'+(live?'<a data-r="a-'+esc(a.id)+'" href="'+href+'">'+esc(a.title)+'</a>':esc(a.title))+'</h3>'+
+  '<p class="asum">'+esc(a.summary)+'</p>'+
+  '<div class="arow">'+(live?'<a class="more" data-r="a-'+esc(a.id)+'" href="'+href+'">Read More <span aria-hidden="true">→</span></a>':'<span class="soon">Coming soon</span>')+(editing?adminBtns(a):'')+'</div></div></article>';
+}
+function header(){
+ var cur=route,a=null;
+ if(route.indexOf('a-')===0){a=findA(route.slice(2));cur=a?'articles':'home';}
+ function link(id,label){return '<a data-r="'+id+'" href="#'+(id==='home'?'':id)+'"'+(cur===id?' aria-current="page"':'')+'>'+esc(label)+'</a>';}
+ return '<header class="top"><div class="wrap top-in">'+
+  '<a class="brand" data-r="home" href="#" aria-label="Playful Little Finds, home">'+logoBadge()+'<span class="brand-name">'+wm('Playful')+'<span>Little Finds</span></span></a>'+
+  '<nav class="nav" aria-label="Main">'+link('home','Home')+CATS.map(function(c){return link(c.id,c.nav);}).join('')+link('articles','Articles')+link('about','About')+'</nav>'+
+  (canEdit?'<button class="edit-toggle" data-act="toggle-edit" aria-pressed="'+(editing?'true':'false')+'">'+(editing?'Done editing':'Edit site')+'</button>':'')+
+  '</div></header>';
+}
+function homePage(){
+ var cards=HOME_ORDER.map(function(id){
+  var c=catById[id];
+  return '<article class="cat k-'+id+'"><div class="cat-ico">'+motif(c.motif)+'</div>'+ed('c.'+id+'.card','h3','cat-t')+ed('c.'+id+'.cardText','p','cat-p')+
+   '<a class="btn" data-r="'+id+'" href="#'+id+'"><span>Explore</span><span aria-hidden="true">→</span></a></article>';
+ }).join('');
+ var latest=articlesFor().slice(0,4).map(cardHtml).join('');
+ return '<section class="hero"><div class="hero-copy"><h1>'+wm('Playful')+'<span class="l2">Little Finds</span></h1>'+
+  ed('hero.tag','p','pill')+ed('hero.sub','p','lead')+
+  '<a class="btn" style="--strong:var(--yellow-strong)" data-act="scroll-cats" href="#">'+ed('hero.cta','span','')+'<span aria-hidden="true">→</span></a></div>'+
+  '<div class="hero-art">'+HERO_SVG+'</div></section>'+
+  '<div id="cats">'+ed('home.cats','h2','sec-title')+'</div><div class="cats">'+cards+'</div>'+
+  ed('home.latest','h2','sec-title')+
+  (latest?'<div class="grid">'+latest+'</div>':'<div class="empty">No articles yet.'+(editing?' Use New article in the bar below to write the first one.':'')+'</div>')+
+  '<div class="more-row"><a class="btn" data-r="articles" href="#articles"><span>View All Articles</span><span aria-hidden="true">\u2192</span></a></div>';
+}
+function catPage(id){
+ var c=catById[id],list=articlesFor(id);
+ return '<section class="band k-'+id+'"><div class="band-copy">'+ed('c.'+id+'.page','h1','band-h')+ed('c.'+id+'.sub','p','band-p')+
+  (editing?'<button class="btn" data-act="new-article" data-cat="'+id+'">+ New article</button>':'')+'</div><div class="band-art">'+motif(c.motif)+'</div></section>'+
+  (list.length?'<div class="grid">'+list.map(cardHtml).join('')+'</div>':'<div class="empty">No articles in this section yet.'+(editing?' Use the New article button above.':'')+'</div>');
+}
+function articlesPage(){
+ var list=articlesFor(artFilter&&catById[artFilter]?artFilter:'',true);
+ var chips=[['','All']].concat(CATS.map(function(c){return [c.id,c.nav];})).map(function(p){
+  return '<button class="fchip" data-act="filter" data-cat="'+p[0]+'" aria-pressed="'+((artFilter||'')===p[0]?'true':'false')+'">'+esc(p[1])+'</button>';
+ }).join('');
+ return '<section class="band k-about"><div class="band-copy">'+ed('articles.title','h1','band-h')+ed('articles.sub','p','band-p')+
+  (editing?'<button class="btn" data-act="new-article" data-cat="'+(artFilter||'')+'">+ New article</button>':'')+'</div><div class="band-art">'+motif('book')+'</div></section>'+
+  '<div class="filters" role="group" aria-label="Filter articles by category">'+chips+'</div>'+
+  (list.length?'<div class="grid">'+list.map(function(a){return cardHtml(a);}).join('')+'</div>':'<div class="empty">No articles here yet.</div>');
+}
+function safeUrl(u){return /^https:\/\/[^\s]+$/i.test(String(u||'').trim())?String(u).trim():'';}
+var AMZ='🛒 Check Price on Amazon';
+function productHtml(p){
+ var url=safeUrl(p.url);
+ var img=p.img?'<img src="/_blob/'+esc(p.img)+'" alt="'+esc(p.name)+'" loading="lazy">':
+  '<div class="ph" role="img" aria-label="Product photo placeholder"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3" class="s-line" fill="none" stroke-width="1.6"/><circle cx="9" cy="11" r="2" class="f-yellow"/><path d="M4 17l5-4 4 3 3-2 4 3" fill="none" class="s-lav" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Product photo to be added</span></div>';
+ var btn=url?'<a class="btn amz" href="'+esc(url)+'" target="_blank" rel="sponsored nofollow noopener noreferrer">'+AMZ+'</a>':(editing?'<span class="amz-ph">Add an Amazon link to show the button</span>':'');
+ return '<article class="prod"><div class="prod-img">'+img+'</div><div class="prod-body">'+
+  '<h3 class="prod-t">'+esc(p.name||'Product name')+'</h3>'+
+  (p.desc?'<p>'+esc(p.desc)+'</p>':'')+
+  (p.why?'<div class="why"><strong>Why we like it</strong><p>'+esc(p.why)+'</p></div>':'')+
+  (p.bestFor?'<p class="best"><strong>Best for:</strong> '+esc(p.bestFor)+'</p>':'')+
+  btn+'</div></article>';
+}
+function relatedFor(a){
+ var seen={},out=[];seen[a.id]=1;
+ function add(x){if(x&&!x.draft&&!seen[x.id]&&out.length<4){seen[x.id]=1;out.push(x);}}
+ (a.related||[]).forEach(function(id){add(findA(id));});
+ articlesFor(a.cat).forEach(add);
+ articlesFor().forEach(add);
+ return out;
+}
+function articlePage(id){
+ var a=findA(id);
+ if(!a||(a.draft&&!editing))return articlesPage();
+ var c=catById[a.cat]||CATS[0],rel=relatedFor(a);
+ var h='<article class="article k-'+c.id+'"><a class="back" data-r="articles" href="#articles">← Articles &amp; Guides</a>'+
+  '<div class="art-meta"><span class="chip">'+c.icon+' '+esc(c.nav)+'</span>'+(a.draft?'<span class="chip">Coming soon</span>':'<span class="date">'+esc(fmt(a.date))+'</span>')+(editing?adminBtns(a):'')+'</div>'+
+  '<h1 class="art-h">'+esc(a.title)+'</h1>'+(a.subtitle?'<p class="art-sub">'+esc(a.subtitle)+'</p>':'')+
+  '<div class="art-cover">'+cover(a,c)+'</div>'+
+  (a.affiliate?'<aside class="disclose">'+ed('affiliate.note','p','')+'</aside>':'')+
+  (a.intro?'<div class="rich">'+rich(a.intro)+'</div>':'');
+ if(a.products.length)h+=ed('tpl.picks','h2','sec-h')+'<div class="picks">'+a.products.map(productHtml).join('')+'</div>';
+ if(a.guide)h+='<h2 class="sec-h">'+esc(a.guideTitle||T('tpl.guide'))+'</h2><div class="rich">'+rich(a.guide)+'</div>';
+ if(a.tips)h+='<h2 class="sec-h">'+esc(a.tipsTitle||T('tpl.tips'))+'</h2><div class="rich">'+rich(a.tips)+'</div>';
+ if(a.final)h+=ed('tpl.final','h2','sec-h')+'<div class="rich">'+rich(a.final)+'</div>';
+ h+='</article>';
+ if(rel.length)h+=ed('tpl.related','h2','sec-title')+'<div class="grid">'+rel.map(function(x){return cardHtml(x);}).join('')+'</div>';
+ return h;
+}
+function textPage(k){
+ return '<section class="band k-about"><div class="band-copy">'+ed('page.'+k+'.title','h1','band-h')+ed('page.'+k+'.body','p','about-p',true)+'</div><div class="band-art">'+motif('book')+'</div></section>';
+}
+function aboutPage(){
+ var pills=[['Discover','sun','crafts'],['Play','rings','activities'],['Learn','book','toys'],['Create','palette','gifts']].map(function(p){
+  return '<div class="pill-i k-'+p[2]+'">'+motif(p[1])+'<span>'+p[0]+'</span></div>';
+ }).join('');
+ var chk='<svg class="chk" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" class="f-mint"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" class="s-ink" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+ var items=[1,2,3,4,5].map(function(i){return '<li>'+chk+ed('about.l'+i,'span','')+'</li>';}).join('');
+ return '<section class="band k-about"><div class="band-copy">'+ed('about.title','h1','band-h')+ed('about.body','p','about-p',true)+'</div>'+
+  '<img class="about-logo" src="'+LOGO+'" alt="Playful Little Finds logo: a smiling open book, blocks and crayons under a rainbow"></section>'+
+  '<div class="pills">'+pills+'</div>'+
+  ed('about.listTitle','h2','sec-title')+'<ul class="checks">'+items+'</ul>';
+}
+function footer(){
+ var legal=[['about','About'],['contact','Contact'],['privacy','Privacy Policy'],['affiliate','Affiliate Disclosure'],['terms','Terms']].map(function(p){return '<a data-r="'+p[0]+'" href="#'+p[0]+'">'+p[1]+'</a>';}).join('');
+ return '<footer class="foot">'+logoBadge()+ed('footer.note','p','foot-note')+
+  '<nav aria-label="Footer"><a data-r="home" href="#">Home</a>'+CATS.map(function(c){return '<a data-r="'+c.id+'" href="#'+c.id+'">'+esc(c.nav)+'</a>';}).join('')+'<a data-r="articles" href="#articles">Articles</a></nav>'+
+  '<nav class="foot-legal" aria-label="Legal">'+legal+'</nav></footer>';
+}
+function body(){
+ if(route==='home')return homePage();
+ if(route==='about')return aboutPage();
+ if(route==='articles')return articlesPage();
+ if(TEXTP[route])return textPage(route);
+ if(catById[route])return catPage(route);
+ if(route.indexOf('a-')===0)return articlePage(route.slice(2));
+ return homePage();
+}
+function render(){
+ app.innerHTML=header()+'<main class="wrap">'+body()+footer()+'</main>';
+ document.body.classList.toggle('editing',editing);
+ try{var ar=route.indexOf('a-')===0?findA(route.slice(2)):null;document.title=ar&&!ar.draft?ar.title+(ar.subtitle?' | '+ar.subtitle:''):'Playful Little Finds';}catch(e){}
+ renderBar();
+}
+function renderBar(){
+ if(!editing&&!dirty){bar.innerHTML='';return;}
+ var msg=statusMsg||(saving?'Saving…':dirty?'You have unsaved changes.':'Editing mode. Click any dashed text to change it.');
+ var btns='';
+ if(confirmDiscard){
+  btns='<button class="ghost" data-act="discard-yes">Yes, discard</button><button class="ghost" data-act="discard-no">Keep editing</button>';
+  msg='Discard every unsaved change?';
+ }else{
+  btns=(editing?'<button class="ghost" data-act="new-article">+ New article</button>':'')+
+   '<button class="ghost" data-act="discard"'+(dirty&&!saving?'':' disabled style="opacity:.45"')+'>Discard</button>'+
+   '<button class="btn" data-act="save"'+(dirty&&!saving?'':' disabled')+'>Save changes</button>';
+ }
+ bar.innerHTML='<div class="bar" role="region" aria-label="Site editor"><div class="bar-msg" role="status">'+esc(msg)+'</div><div class="bar-btns">'+btns+'</div></div>';
+}
+function markDirty(){statusMsg='';if(!dirty){dirty=true;renderBar();}}
+
+/* ---------- navigation ---------- */
+function go(r){
+ route=r;confirmDel=null;render();window.scrollTo(0,0);
+ try{var h=r==='home'?'':r;if((location.hash||'').replace(/^#/,'')!==h)location.hash=h;}catch(e){}
+}
+window.addEventListener('hashchange',function(){var r=parseHash();if(r!==route){route=r;confirmDel=null;render();window.scrollTo(0,0);}});
+
+/* ---------- article editor ---------- */
+function blankProduct(){return {id:'p'+Date.now().toString(36)+Math.floor(Math.random()*1296).toString(36),name:'',desc:'',why:'',bestFor:'',url:'',img:''};}
+function slugify(s){return String(s).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,60)||'article';}
+function uniqueId(base){var id=base,n=2;while(findA(id)){id=base+'-'+n;n++;}return id;}
+function pField(i,key,label,val,kind){
+ var id='pf-'+i+'-'+key;
+ var ctl=kind==='area'?'<textarea id="'+id+'" data-pf="'+key+'" rows="3">'+esc(val)+'</textarea>':
+  '<input type="'+(kind==='url'?'url':'text')+'" id="'+id+'" data-pf="'+key+'" value="'+esc(val)+'" autocomplete="off"'+(kind==='url'?' placeholder="https://"':'')+'>';
+ return '<label for="'+id+'">'+label+'</label>'+ctl;
+}
+function renderProducts(){
+ var box=document.getElementById('f-products');if(!box||!draft)return;
+ box.innerHTML=draft.products.map(function(p,i){
+  return '<fieldset class="pf" data-pi="'+i+'"><legend>Pick '+(i+1)+'</legend>'+
+   pField(i,'name','Product name',p.name,'text')+
+   pField(i,'desc','Short description',p.desc,'area')+
+   pField(i,'why','Why we like it',p.why,'area')+
+   pField(i,'bestFor','Best for',p.bestFor,'text')+
+   pField(i,'url','Amazon link (optional)',p.url,'url')+
+   (assetsApi?'<label for="pp-'+i+'">Product photo (optional)</label><input type="file" id="pp-'+i+'" data-ppf="'+i+'" accept="image/png,image/jpeg,image/webp,image/gif"><span class="hint" id="ppn-'+i+'">'+(p.img?'A photo is attached.':'No photo yet. A labeled placeholder is shown.')+'</span>':'')+
+   '<div class="pf-actions">'+(p.img?'<button class="mini" type="button" data-act="pp-clear" data-pi="'+i+'">Remove photo</button>':'')+'<button class="mini danger" type="button" data-act="p-del" data-pi="'+i+'">Remove this pick</button></div></fieldset>';
+ }).join('')||'<p class="hint">No products yet. Add one if this article recommends products.</p>';
+}
+function openEditor(id,cat){
+ var a=id?findA(id):null;
+ draft={id:a?a.id:null,img:a&&a.img?a.img:'',products:a?clone(a.products):[]};
+ var catOpts=CATS.map(function(c){return '<option value="'+c.id+'">'+esc(c.nav)+'</option>';}).join('');
+ var motifOpts=Object.keys(MOTIF_NAMES).map(function(k){return '<option value="'+k+'">'+esc(MOTIF_NAMES[k])+'</option>';}).join('');
+ var rel=a?a.related:[];
+ var others=state.articles.filter(function(x){return !x.draft&&(!a||x.id!==a.id);});
+ var relHtml=others.length?others.map(function(x){return '<label class="chk-l"><input type="checkbox" name="rel" value="'+esc(x.id)+'"'+(rel.indexOf(x.id)>-1?' checked':'')+'> <span>'+esc(x.title)+'</span></label>';}).join(''):'<span class="hint">No other published articles yet.</span>';
+ modal.innerHTML='<div class="scrim"><div class="sheet" role="dialog" aria-modal="true" aria-labelledby="m-h">'+
+  '<h2 id="m-h">'+(a?'Edit article':'New article')+'</h2>'+
+  '<label for="f-title">Title</label><input type="text" id="f-title" maxlength="120" autocomplete="off">'+
+  '<label for="f-sub">Subtitle</label><input type="text" id="f-sub" maxlength="120" autocomplete="off">'+
+  '<label for="f-cat">Category</label><select id="f-cat">'+catOpts+'</select>'+
+  '<label for="f-status">Status</label><select id="f-status"><option value="live">Published</option><option value="soon">Coming soon (card only, no page yet)</option></select>'+
+  '<label for="f-sum">Short description (shown on cards)</label><textarea id="f-sum" rows="2" maxlength="220"></textarea>'+
+  '<label for="f-motif">Featured picture</label><select id="f-motif">'+motifOpts+'</select>'+
+  (assetsApi?'<label for="f-photo">Featured photo (optional)</label><input type="file" id="f-photo" accept="image/png,image/jpeg,image/webp,image/gif"><span class="hint" id="f-photo-note"></span><div><button class="mini" data-act="m-photo-clear" type="button">Remove photo</button></div>':'')+
+  '<label class="chk-l" for="f-aff"><input type="checkbox" id="f-aff"> <span>Show the Amazon affiliate disclosure on this article</span></label>'+
+  '<label for="f-intro">Introduction</label><textarea id="f-intro" rows="6"></textarea><span class="hint">Leave a blank line between paragraphs. Start a line with - for a bullet. Use **bold** for emphasis.</span>'+
+  '<h3 class="sheet-h">Our Top Picks</h3><div id="f-products"></div><div><button class="ghost" type="button" data-act="p-add">+ Add a product</button></div><span class="hint">Amazon links must start with https://. Only add real links from your own affiliate account.</span>'+
+  '<h3 class="sheet-h">Helpful guide</h3><label for="f-gtitle">Section heading</label><input type="text" id="f-gtitle" maxlength="120" placeholder="What to Look For" autocomplete="off">'+
+  '<label for="f-guide">Guide text</label><textarea id="f-guide" rows="7"></textarea>'+
+  '<h3 class="sheet-h">Fun ideas and tips</h3><label for="f-ttitle">Section heading</label><input type="text" id="f-ttitle" maxlength="120" placeholder="Fun Ideas &amp; Tips" autocomplete="off">'+
+  '<label for="f-tips">Ideas and tips text</label><textarea id="f-tips" rows="7"></textarea>'+
+  '<h3 class="sheet-h">Final Thoughts</h3><textarea id="f-final" rows="4" aria-label="Final thoughts"></textarea>'+
+  '<h3 class="sheet-h">You May Also Like</h3><span class="hint">Choose 3 or 4 related articles. If you choose fewer, similar articles are added automatically.</span><div class="rel-list">'+relHtml+'</div>'+
+  '<p class="err" id="f-err" role="alert"></p>'+
+  '<div class="sheet-actions"><button class="btn" data-act="m-save" type="button">Save article</button><button class="ghost" data-act="m-cancel" type="button">Cancel</button></div>'+
+  '</div></div>';
+ modal.hidden=false;
+ var $=function(i){return document.getElementById(i);};
+ $('f-title').value=a?a.title:'';
+ $('f-sub').value=a?a.subtitle:'';
+ $('f-cat').value=a?a.cat:(cat&&catById[cat]?cat:(catById[route]?route:CATS[0].id));
+ $('f-status').value=a&&a.draft?'soon':'live';
+ $('f-sum').value=a?a.summary:'';
+ $('f-motif').value=a&&a.motif?a.motif:catById[$('f-cat').value].motif;
+ $('f-aff').checked=a?a.affiliate:true;
+ $('f-intro').value=a?a.intro:'';
+ $('f-gtitle').value=a?a.guideTitle:'';
+ $('f-guide').value=a?a.guide:'';
+ $('f-ttitle').value=a?a.tipsTitle:'';
+ $('f-tips').value=a?a.tips:'';
+ $('f-final').value=a?a.final:'';
+ if($('f-photo-note'))$('f-photo-note').textContent=draft.img?'A photo is attached.':'No photo. The picture above is used.';
+ renderProducts();
+ $('f-title').focus();
+}
+function closeEditor(){modal.hidden=true;modal.innerHTML='';draft=null;}
+function saveEditor(){
+ var $=function(i){return document.getElementById(i);};
+ function fail(m,el){$('f-err').textContent=m;if(el)el.focus();}
+ var title=$('f-title').value.trim();
+ if(!title){fail('Add a title first.',$('f-title'));return;}
+ for(var i=0;i<draft.products.length;i++){
+  var u=draft.products[i].url.trim();
+  if(u&&!safeUrl(u)){fail('Pick '+(i+1)+': the Amazon link must start with https:// and have no spaces.',$('pf-'+i+'-url'));return;}
+ }
+ var prods=draft.products.filter(function(p){return p.name.trim()||p.desc.trim()||p.why.trim()||p.bestFor.trim()||p.url.trim()||p.img;}).map(function(p){p.url=p.url.trim();return p;});
+ var intro=$('f-intro').value.trim(),sum=$('f-sum').value.trim();
+ if(!sum&&intro)sum=intro.replace(/\*\*/g,'').replace(/\s+/g,' ').slice(0,150).replace(/\s+\S*$/,'')+'…';
+ var a=draft.id?findA(draft.id):null,isNew=!a;
+ if(isNew){a={id:uniqueId(slugify(title)),date:new Date().toISOString().slice(0,10)};state.articles.push(a);}
+ a.title=title;a.subtitle=$('f-sub').value.trim();a.cat=$('f-cat').value;a.draft=$('f-status').value==='soon';
+ a.summary=sum||(a.draft?'Coming soon.':'');a.motif=$('f-motif').value;
+ if(draft.img)a.img=draft.img;else delete a.img;
+ a.affiliate=$('f-aff').checked;a.intro=intro;a.products=prods;
+ a.guideTitle=$('f-gtitle').value.trim();a.guide=$('f-guide').value.trim();
+ a.tipsTitle=$('f-ttitle').value.trim();a.tips=$('f-tips').value.trim();a.final=$('f-final').value.trim();
+ a.related=[].slice.call(modal.querySelectorAll('input[name=rel]:checked')).map(function(x){return x.value;});
+ normA(a);
+ var id=a.id,live=!a.draft;
+ closeEditor();markDirty();
+ if(isNew&&live)go('a-'+id);else render();
+}
+
+/* ---------- saving the site ---------- */
+function buildDoc(){
+ var css=document.getElementById('app-style').textContent;
+ var code=document.getElementById('app-code').textContent;
+ var json=JSON.stringify({texts:state.texts,articles:state.articles}).replace(/</g,'\\u003c');
+ return '<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>'+RESET+'</style></head><body>'+
+  PAGE_HEAD+'<style id="app-style">'+css+'</style>\n<div id="app"></div>\n<div id="bar"></div>\n<div id="modal" hidden></div>\n'+
+  '<script id="site-data" type="application/json">'+json+'<\/script>\n<script id="app-code">'+code+'<\/script>\n</body></html>';
+}
+function save(){
+ if(!art||saving||!dirty)return;
+ saving=true;statusMsg='';renderBar();
+ var p;try{p=art.publish(buildDoc());}catch(e){p=Promise.reject(e);}
+ p.then(function(){statusMsg='Saved. Loading the new version…';renderBar();},function(e){
+  saving=false;var c=e&&e.code;
+  if(c==='conflict')statusMsg='Someone saved at the same time. Loading the newest version…';
+  else if(c==='not_writer'||c==='not_granted'||c==='consent_required'||c==='not_declared'||c==='capability_disabled'||c==='capability_removed')statusMsg='This view cannot save changes. Open the site from your own Claude account to edit it.';
+  else if(c==='too_large')statusMsg='The site is too large to save. Try removing a cover photo or shortening an article.';
+  else if(c==='rate_limited')statusMsg='Saving too often. Wait a moment, then try again.';
+  else statusMsg='Saving did not work. Your changes are still here. Try again.';
+  renderBar();
+ });
+}
+
+/* ---------- events ---------- */
+document.addEventListener('click',function(e){
+ var t=e.target;if(!t||!t.closest)return;
+ if(editing&&t.closest('[data-k]')){e.preventDefault();return;}
+ var a=t.closest('[data-act]');
+ if(a){
+  e.preventDefault();var act=a.getAttribute('data-act'),id=a.getAttribute('data-id');
+  if(act==='toggle-edit'){editing=!editing;confirmDel=null;render();}
+  else if(act==='filter'){artFilter=a.getAttribute('data-cat')||'';render();}
+  else if(act==='scroll-cats'){var el=document.getElementById('cats');if(el){var rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;el.scrollIntoView({behavior:rm?'auto':'smooth',block:'start'});}}
+  else if(act==='new-article')openEditor(null,a.getAttribute('data-cat'));
+  else if(act==='edit-article')openEditor(id);
+  else if(act==='del-ask'){confirmDel=id;render();}
+  else if(act==='del-no'){confirmDel=null;render();}
+  else if(act==='del-yes'){state.articles=state.articles.filter(function(x){return x.id!==id;});confirmDel=null;markDirty();if(route==='a-'+id)go('home');else render();}
+  else if(act==='save')save();
+  else if(act==='discard'){confirmDiscard=true;renderBar();}
+  else if(act==='discard-no'){confirmDiscard=false;renderBar();}
+  else if(act==='discard-yes'){state=clone(initial);dirty=false;confirmDiscard=false;statusMsg='';if(route.indexOf('a-')===0&&!findA(route.slice(2)))route='home';render();}
+  else if(act==='m-save')saveEditor();
+  else if(act==='p-add'){if(draft){draft.products.push(blankProduct());renderProducts();}}
+  else if(act==='p-del'){if(draft){draft.products.splice(+a.getAttribute('data-pi'),1);renderProducts();}}
+  else if(act==='pp-clear'){if(draft){draft.products[+a.getAttribute('data-pi')].img='';renderProducts();}}
+  else if(act==='m-cancel')closeEditor();
+  else if(act==='m-photo-clear'){if(draft){draft.img='';var n=document.getElementById('f-photo-note');if(n)n.textContent='No photo. The cover picture above is used.';}}
+  return;
+ }
+ var r=t.closest('[data-r]');
+ if(r){e.preventDefault();go(r.getAttribute('data-r'));}
+});
+document.addEventListener('input',function(e){
+ var pf=e.target&&e.target.getAttribute?e.target.getAttribute('data-pf'):null;
+ if(pf&&draft){var fs=e.target.closest('[data-pi]');if(fs)draft.products[+fs.getAttribute('data-pi')][pf]=e.target.value;return;}
+ var el=e.target&&e.target.closest?e.target.closest('[data-k]'):null;
+ if(!el||!editing)return;
+ state.texts[el.getAttribute('data-k')]=el.textContent;markDirty();
+});
+document.addEventListener('keydown',function(e){
+ if(e.key==='Escape'&&!modal.hidden){closeEditor();return;}
+ var el=e.target&&e.target.closest?e.target.closest('[data-k]'):null;
+ if(el&&editing&&e.key==='Enter'&&!el.hasAttribute('data-ml')){e.preventDefault();el.blur();}
+});
+document.addEventListener('change',function(e){
+ var t=e.target;if(!t||t.id!=='f-photo'||!assetsApi||!draft)return;
+ var f=t.files&&t.files[0],note=document.getElementById('f-photo-note');if(!f)return;
+ if(note)note.textContent='Uploading photo…';
+ var p;try{p=assetsApi.upload(f);}catch(err){p=Promise.reject(err);}
+ p.then(function(res){if(draft){draft.img=res.id;}if(note)note.textContent='Photo added.';},function(err){
+  var c=err&&err.code,m='The photo could not be uploaded. Try a smaller image.';
+  if(c==='too_large')m='That photo is too large. Try one under 20 MB.';
+  else if(c==='unsupported_type')m='Use a PNG, JPEG, WebP or GIF photo.';
+  else if(c==='not_granted'||c==='capability_disabled')m='Photo upload is not available in this view.';
+  if(note)note.textContent=m;
+ });
+});
+document.addEventListener('change',function(e){
+ var t=e.target;if(!t||!t.getAttribute||!assetsApi||!draft)return;
+ var pi=t.getAttribute('data-ppf');if(pi==null)return;
+ var f=t.files&&t.files[0];if(!f)return;
+ var note=document.getElementById('ppn-'+pi);if(note)note.textContent='Uploading photo\u2026';
+ var p;try{p=assetsApi.upload(f);}catch(err){p=Promise.reject(err);}
+ p.then(function(res){if(draft&&draft.products[+pi]){draft.products[+pi].img=res.id;renderProducts();}},function(err){
+  var c=err&&err.code,m='The photo could not be uploaded. Try a smaller image.';
+  if(c==='too_large')m='That photo is too large. Try one under 20 MB.';
+  else if(c==='unsupported_type')m='Use a PNG, JPEG, WebP or GIF photo.';
+  if(note)note.textContent=m;
+ });
+});
+window.addEventListener('beforeunload',function(e){if(dirty&&!saving){e.preventDefault();e.returnValue='';}});
+
+/* ---------- start ---------- */
+render();
+(function(){
+ var c=window.claude;if(!c||!c.use)return;
+ c.use('user').then(function(u){return u?u.canEdit():false;}).then(function(ok){
+  if(!ok)return;
+  return c.use('artifact').then(function(a){
+   if(!a)return;art=a;canEdit=true;
+   return c.use('assets').then(function(s){assetsApi=s||null;},function(){});
+  });
+ }).then(function(){if(canEdit)render();},function(){});
+})();
+})();
+</script>
+</body></html>
